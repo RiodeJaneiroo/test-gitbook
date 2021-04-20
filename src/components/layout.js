@@ -7,6 +7,8 @@ import mdxComponents from './mdxComponents';
 import Sidebar from './sidebar';
 import RightSidebar from './rightSidebar';
 import config from '../../config.js';
+import { Breadcrumb } from 'gatsby-plugin-breadcrumb'
+
 
 const Wrapper = styled('div')`
   display: flex;
@@ -62,7 +64,13 @@ const RightSideBarWidth = styled('div')`
   width: 224px;
 `;
 
-const Layout = ({ children, location }) => (
+const Layout = ({ children, location, pageContext }) => {
+  const {
+    breadcrumb: { crumbs },
+  } = pageContext;
+  const customCrumbLabel = location.pathname.toLowerCase().replace('-', ' ');
+
+  return (
   <ThemeProvider location={location}>
     <MDXProvider components={mdxComponents}>
       <Wrapper>
@@ -75,7 +83,13 @@ const Layout = ({ children, location }) => (
             dangerouslySetInnerHTML={{ __html: config.sidebar.title }}
           />
         ) : null}
+       
         <Content>
+          <Breadcrumb
+            crumbs={crumbs}
+            crumbSeparator=" - "
+            crumbLabel={customCrumbLabel}
+          />
           <MaxWidth>{children}</MaxWidth>
         </Content>
         <RightSideBarWidth className={'hiddenMobile'}>
@@ -84,6 +98,6 @@ const Layout = ({ children, location }) => (
       </Wrapper>
     </MDXProvider>
   </ThemeProvider>
-);
+)};
 
 export default Layout;

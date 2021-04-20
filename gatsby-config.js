@@ -5,6 +5,30 @@ const config = require('./config');
 
 const plugins = [
   'gatsby-plugin-sitemap',
+  {
+    resolve: `gatsby-plugin-breadcrumb`,
+    options: {
+      useAutoGen: true,
+      autoGenHomeLabel: `Root`,
+      exclude: [
+        `**/dev-404-page/**`,
+        `**/404/**`,
+        `**/404.html`,
+        `**/offline-plugin-app-shell-fallback/**`
+      ],
+      excludeOptions: {
+        separator: '.'
+      },
+      crumbLabelUpdates: [
+        {
+          pathname: '/book',
+          crumbLabel: 'Books'
+        }
+      ],
+      trailingSlashes: true,
+      usePathPrefix: '/blog',
+   },
+  },
   'gatsby-plugin-sharp',
   {
     resolve: `gatsby-plugin-layout`,
