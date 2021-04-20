@@ -7,9 +7,9 @@ const baseTheme = {
 const lightTheme = {
   ...baseTheme,
   colors: {
-    background: '#fff',
+    background: 'linear-gradient(top, rgb(245, 247, 249), rgb(245, 247, 249))',
     heading: '#000',
-    text: '#3B454E',
+    text: '#2b2b2c',
     preFormattedText: 'rgb(245, 247, 249)',
     link: '#1000EE',
   },

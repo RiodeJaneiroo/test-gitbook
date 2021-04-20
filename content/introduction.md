@@ -30,3 +30,5 @@ Heading 6 text
 - Item 3
 - Item 4
 - Item 5
+
+![](random-img.png)
