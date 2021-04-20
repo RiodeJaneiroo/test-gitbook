@@ -1,10 +1,16 @@
 const componentWithMDXScope = require('gatsby-plugin-mdx/component-with-mdx-scope');
 
+const fs = require('fs');
+
 const path = require('path');
 
 const startCase = require('lodash.startcase');
 
 const config = require('./config');
+
+const rawTreeMenu = fs.readFileSync('treeMenu.json');
+
+const treeMenu = JSON.parse(rawTreeMenu);
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -24,6 +30,13 @@ exports.createPages = ({ graphql, actions }) => {
                   fields {
                     slug
                   }
+                  parent {
+                    ... on File {
+                      id
+                      name
+                      base
+                    }
+                  }
                 }
               }
             }
@@ -35,10 +48,25 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors);
         }
 
+        const pathUrl = (urlFromConfig, slug) => {
+          if (urlFromConfig?.route) {
+            return `/${urlFromConfig.route}`;
+          }
+          if (slug) {
+            return slug;
+          }
+
+          return '/';
+        };
+
         // Create blog posts pages.
         result.data.allMdx.edges.forEach(({ node }) => {
+          const findInMenu = treeMenu.menu.find(el => el.file === node.parent.base);
+
+          console.log(findInMenu, node.fields.slug);
+
           createPage({
-            path: node.fields.slug ? node.fields.slug : '/',
+            path: pathUrl(findInMenu, node.fields.slug),
             component: path.resolve('./src/templates/docs.js'),
             context: {
               id: node.fields.id,
@@ -74,7 +102,11 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   if (node.internal.type === `Mdx`) {
     const parent = getNode(node.parent);
 
-    let value = parent.relativePath.replace(parent.ext, '');
+    const findInMenu = treeMenu.menu.find(el => el.file === parent.base);
+
+    let value = findInMenu?.route || parent.relativePath.replace(parent.ext, '');
+
+    console.log('value', value);
 
     if (value === 'index') {
       value = '';
