@@ -20,7 +20,7 @@ const Wrapper = styled('div')`
   }
 
   .sideBarUL .item > a:hover {
-    background-color: #1ed3c6;
+    background-color: #3884ff;
     color: #fff !important;
 
     /* background: #F8F8F8 */
@@ -85,12 +85,15 @@ const Layout = ({ children, location, pageContext }) => {
         ) : null}
        
         <Content>
-          <Breadcrumb
-            crumbs={crumbs}
-            crumbSeparator=" - "
-            crumbLabel={customCrumbLabel}
-          />
-          <MaxWidth>{children}</MaxWidth>
+         
+          <MaxWidth>
+            <Breadcrumb
+              crumbs={crumbs}
+              crumbSeparator=" → "
+              crumbLabel={customCrumbLabel}
+            />
+            {children}
+          </MaxWidth>
         </Content>
         <RightSideBarWidth className={'hiddenMobile'}>
           <RightSidebar location={location} />

@@ -9,7 +9,7 @@ const plugins = [
     resolve: `gatsby-plugin-breadcrumb`,
     options: {
       useAutoGen: true,
-      autoGenHomeLabel: `Root`,
+      autoGenHomeLabel: `Home`,
       exclude: [
         `**/dev-404-page/**`,
         `**/404/**`,
@@ -21,8 +21,12 @@ const plugins = [
       },
       crumbLabelUpdates: [
         {
-          pathname: '/book',
-          crumbLabel: 'Books'
+          pathname: '/codeblock',
+          crumbLabel: 'Codeblock'
+        },
+        {
+          pathname: '/codeblock/1-index/',
+          crumbLabel: 'Subpage'
         }
       ],
       trailingSlashes: true,

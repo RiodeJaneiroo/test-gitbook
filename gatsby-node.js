@@ -49,7 +49,7 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         const pathUrl = (urlFromConfig, slug) => {
-          if (urlFromConfig.route) {
+          if (urlFromConfig?.route) {
             return `/${urlFromConfig.route}`;
           }
           if (slug) {
@@ -104,13 +104,9 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
     const findInMenu = treeMenu.menu.find(el => el.file === parent.base);
 
-    let value;
+    let value = findInMenu?.route || parent.relativePath.replace(parent.ext, '');
 
-    if (findInMenu.hasOwnProperty('route')) {
-      value = findInMenu.route;
-    } else {
-      value = parent.relativePath.replace(parent.ext, '');
-    }
+    console.log('value', value);
 
     if (value === 'index') {
       value = '';
