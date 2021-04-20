@@ -1,4 +1,4 @@
-FROM node:buster
+FROM node:15
 
 # Create app directory
 WORKDIR /app
@@ -9,7 +9,7 @@ RUN npm -g install gatsby-cli
 
 COPY package*.json ./
 
-RUN npm ci
+RUN npm i --legacy-peer-deps
 
 # Bundle app source
 COPY . .

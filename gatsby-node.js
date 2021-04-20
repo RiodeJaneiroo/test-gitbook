@@ -49,7 +49,7 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         const pathUrl = (urlFromConfig, slug) => {
-          if (urlFromConfig?.route) {
+          if (urlFromConfig.route) {
             return `/${urlFromConfig.route}`;
           }
           if (slug) {
