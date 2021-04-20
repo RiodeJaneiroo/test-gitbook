@@ -106,8 +106,6 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
     let value = findInMenu?.route || parent.relativePath.replace(parent.ext, '');
 
-    console.log('value', value);
-
     if (value === 'index') {
       value = '';
     }
