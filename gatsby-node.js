@@ -104,7 +104,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
     const findInMenu = treeMenu.menu.find(el => el.file === parent.base);
 
-    let value = findInMenu?.route || parent.relativePath.replace(parent.ext, '');
+    let value = findInMenu.route || parent.relativePath.replace(parent.ext, '');
 
     console.log('value', value);
 
