@@ -34,7 +34,7 @@ export const baseStyles = css`
 
   a {
     transition: color 0.15s;
-    /* color: #663399; */
+    /* color: #3884ff; */
   }
 
   body {
@@ -121,6 +121,19 @@ export const baseStyles = css`
     align-items: center;
     color: #000;
     opacity: 0.7;
+  }
+  .breadcrumb__list {
+    display: flex;
+    list-style: none;
+    margin: 0 0 25px;
+  }
+  .breadcrumb__separator{
+    margin: 0 6px;
+  }
+  .breadcrumb__link {
+    color: #111;
+    border-bottom: 1px solid;
+    text-transform: capitalize;
   }
 
   .githubSection:hover {
@@ -447,7 +460,7 @@ export const baseStyles = css`
   }
 
   .hideFrontLine .active > a {
-    background-color: #1ed3c6;
+    background-color: #3884ff;
     color: #fff !important;
   }
   .firstLevel ul li .collapser svg path {
@@ -467,7 +480,7 @@ export const baseStyles = css`
   }
 
   .sideBarUL .item > a {
-    color: #1ED3C6;
+    color: #3884ff;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -505,7 +518,7 @@ export const baseStyles = css`
     border-color: rgb(230, 236, 241) !important;
     border-style: solid none solid solid;
     border-width: 1px 0px 1px 1px;
-    background-color: #1ed3c6 !important;
+    background-color: #3884ff !important;
     color: #fff;
   }
 
